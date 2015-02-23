@@ -6,23 +6,13 @@ package com.github.tamaki.study.tamaki.FizzBuzz
 object FizzBuzz {
   def main(args: Array[String]): Unit = {
 
-    // 2の倍数を除去する
-//    (1 to 100).filter(_ % 2 != 0).map {
-//      case n if n % 15 == 0 => "FizzBuzz"
-//      case n if n %  3 == 0 => "Fizz"
-//      case n if n %  5 == 0 => "Buzz"
-//      case n => n.toString
-//    }.foreach(println)
+    // 数値のみの合計を求める
+    val sum = (1 to 100)
+      .map(sorting)
+      .map(s => try { Some(s.toInt) } catch { case e:Exception => None })
+      .map(_.getOrElse(0)).sum
 
-    // 1行ずつの表示をやめる
-    (1 to 100).withFilter(_ % 2 != 0).map {
-      case n if n % 15 == 0 => "FizzBuzz"
-      case n if n %  3 == 0 => "Fizz"
-      case n if n %  5 == 0 => "Buzz"
-      case n => n.toString
-    }.reduce(_ + "," + _).foreach(print)
-
-//  (1 to 100).map(sorting).foreach(println)
+    println(sum)
   }
 
   def sorting(num: Int): String = {
